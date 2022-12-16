@@ -1,92 +1,130 @@
-@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #f6f7fb;
-  font-family: "Muli", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+  font-family: "Lato", sans-serif;
+  background-color: #333;
+  color: #222;
+  overflow-x: hidden;
   margin: 0;
 }
 
 .container {
-  text-align: center;
+  background-color: #fafafa;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 50px;
+  transform-origin: top left;
+  transition: transform 0.5s linear;
 }
-.progress-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 400px;
+
+.container.show-nav {
+  transform: rotate(-20deg);
+}
+
+.container img {
   max-width: 100%;
-  margin-bottom: 30px;
-  position: relative;
 }
 
-.progress {
-  background-color: #3498db;
-  width: 0%;
-  height: 4px;
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translateY(-50%);
-  transition: 0.4s ease;
-  z-index: -1;
-}
-
-.progress-container::before {
-  content: "";
-  background-color: #9e9e9e;
-  width: 100%;
-  height: 4px;
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translateY(-50%);
-  transition: 0.4s ease;
-  z-index: -1;
+.circle-container {
+  position: fixed;
+  top: -100px;
+  left: -100px;
 }
 
 .circle {
-  background-color: #fff;
-  width: 40px;
-  height: 40px;
-  border: 4px solid #9e9e9e;
+  width: 200px;
+  height: 200px;
+  background-color: tomato;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.4s ease;
+  position: relative;
+  transition: transform 0.5s linear;
 }
 
-.circle.active {
-  border-color: #3498db;
-  transition-delay: 0.2s;
-}
-
-.btn {
-  padding: 7px 15px;
+.circle button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100px;
+  background: transparent;
   border: none;
-  background-color: #3498db;
-  border-radius: 3px;
+  font-size: 26px;
   color: #fff;
-  transition: 0.3s ease;
-  cursor: pointer;
 }
 
-.btn:hover {
-  background-color: #306283;
-}
-.btn:disabled {
-  background-color: #9e9e9e;
-}
-.btn:focus {
+.circle button:focus {
   outline: none;
+}
+.circle button#open {
+  left: 60%;
+}
+
+.circle button#close {
+  top: 60%;
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+
+.content {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.content h1 {
+  margin: 0;
+}
+
+.content small {
+  color: #555;
+  font-style: italic;
+}
+
+.content p {
+  color: #333;
+  line-height: 1.5;
+}
+
+.container.show-nav + nav li {
+  transform: translateX(0);
+  transition-delay: 0.3s;
+}
+.container.show-nav .circle {
+  transform: rotate(-70deg);
+}
+
+nav {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  z-index: 10px;
+}
+nav ul {
+  list-style-type: none;
+  color: #fff;
+  margin: 40px 0;
+}
+
+nav ul li {
+  margin: 20px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  transform: translateX(-100%);
+  transition: transform 0.4s linear;
+}
+nav ul li i {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+nav ul li + li {
+  margin-left: 15px;
+  transform: translateX(-150%);
+}
+
+nav ul li + li + li {
+  margin-left: 30px;
+  transform: translateX(-200%);
 }
